@@ -1,4 +1,14 @@
-mixed-port: 7890
+# Author:https://github.com/Repcz
+#
+# 以 ';' 或 '#' 或 '//' 开头的配置文件行为注释行
+#
+# 最后更新时间: 2023/4/1
+#
+# ================
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
 allow-lan: true
 bind-address: '*'
 mode: rule
@@ -13,44 +23,35 @@ dns:
   enhanced-mode: fake-ip  
   fake-ip-range: 198.18.0.1/16 
   fake-ip-filter:
-     - '*.lan'
-     - localhost.ptlogin2.qq.com
-     - '+.srv.nintendo.net'
-     - '+.stun.playstation.net'
-     - '+.msftconnecttest.com'
-     - '+.msftncsi.com'
-     - '+.xboxlive.com'
-     - 'msftconnecttest.com'
-     - 'xbox.*.microsoft.com'
-     - '*.battlenet.com.cn'
-     - '*.battlenet.com'
-     - '*.blzstatic.cn'
-     - '*.battle.net'
+    - '*.lan'
+    - localhost.ptlogin2.qq.com
+    - '+.srv.nintendo.net'
+    - '+.stun.playstation.net'
+    - '+.msftconnecttest.com'
+    - '+.msftncsi.com'
+    - '+.xboxlive.com'
+    - 'msftconnecttest.com'
+    - 'xbox.*.microsoft.com'
+    - '*.battlenet.com.cn'
+    - '*.battlenet.com'
+    - '*.blzstatic.cn'
+    - '*.battle.net'
   nameserver:
-     - 223.5.5.5
-     - 180.76.76.76
-     - 119.29.29.29
-     - 117.50.11.11
-     - 117.50.10.10
-     - 114.114.114.114
-     - https://dns.alidns.com/dns-query
-     - https://doh.360.cn/dns-query
+    - 223.5.5.5
+    - 119.29.29.29
+    - 114.114.114.114
   fallback:
-     - 8.8.8.8
-     - 1.1.1.1
-     - https://dns.rubyfish.cn/dns-query
-     - https://cloudflare-dns.com/dns-query
-     - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns.alidns.com/dns-query
   fallback-filter:
      geoip: true
      geoip-code: CN
      ipcidr:
        - 240.0.0.0/4
-       
-
 
 proxy-providers:
-  All:
+  All: &all # 建立锚点
     type: http
     url: "https://api.v1.mk/sub?target=clash&url=你的订阅链接&list=true&udp=true"
     # 可以使用任意类型的链接替换上面文字，多个链接使用英文符号的竖杠|隔开一起写上即可
@@ -63,7 +64,7 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
   HK:
     type: file
-    path: ./all.yaml
+    <<: *all
     filter: 港|HK|(?i)Hong
     health-check:
       enable: true
@@ -71,7 +72,7 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
   JP:
     type: file
-    path: ./all.yaml
+    <<: *all
     filter: 日|东京|JP|(?i)Japan
     health-check:
       enable: true
@@ -79,7 +80,7 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
   US:
     type: file
-    path: ./all.yaml
+    <<: *all
     filter: 美|US|(?i)States|American
     health-check:
       enable: true
@@ -87,7 +88,7 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
   TW:
     type: file
-    path: ./all.yaml
+    <<: *all
     filter: 台|湾|TW|(?i)Taiwan
     health-check:
       enable: true
@@ -95,7 +96,7 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
   SG:
     type: file
-    path: ./all.yaml
+    <<: *all
     interval: 3600
     filter: 新|坡|SG|(?i)Singapore
     health-check:
@@ -104,7 +105,7 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
   UK:
     type: file
-    path: ./all.yaml
+    <<: *all
     interval: 3600
     filter: 英|UK|(?i)Kingdom
     health-check:
@@ -113,7 +114,7 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
   AU:
     type: file
-    path: ./all.yaml
+    <<: *all
     interval: 3600
     filter: 澳|AU|(?i)Austria
     health-check:
@@ -122,14 +123,16 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
   IN:
     type: file
-    path: ./all.yaml
+    <<: *all
     interval: 3600
     filter: 印度|印|IN|India
     health-check:
       enable: true
       interval: 120
       url: http://www.gstatic.com/generate_204
+
 proxies: null
+
 proxy-groups:
   - name: 🚀 手动切换
     type: select
@@ -334,6 +337,7 @@ proxy-groups:
     interval: 600
     proxies:
       - REJECT
+
 rule-providers:
   Direct:
     type: http
@@ -416,7 +420,7 @@ rule-providers:
   ChinaIP:
     type: http
     behavior: ipcidr
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaIPs/ChinaIPs_IP.yaml
+    url: https://cdn.jsdelivr.net/gh/soffchen/GeoIP2-CN@release/clash-rule-provider.yml
     path: ./ruleset/ChinaIP.yaml
     interval: 86400
   ProxyLite:
@@ -425,6 +429,7 @@ rule-providers:
     url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ProxyLite/ProxyLite.yaml
     path: ./ruleset/ProxyLite.yaml
     interval: 86400
+
 rules:
   - RULE-SET,Direct,DIRECT
   - RULE-SET,Lan,DIRECT
@@ -443,5 +448,3 @@ rules:
   - RULE-SET,ChinaIP,🌏 国内网站
   - GEOIP,CN,🌏 国内网站,no-resolve
   - MATCH,🐟 漏网之鱼
-
-

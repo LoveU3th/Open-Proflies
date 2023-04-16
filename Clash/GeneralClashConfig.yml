@@ -1,5 +1,15 @@
-# 源配置地址：https://github.com/ACL4SSR/ACL4SSR/blob/master/Clash/GeneralClashConfig.yml
-mixed-port: 7890
+# 基于[@ACL4SSR](https://github.com/ACL4SSR/ACL4SSR/blob/master/Clash/GeneralClashConfig.yml)修改
+# Author:https://github.com/Repcz
+#
+# 以 ';' 或 '#' 或 '//' 开头的配置文件行为注释行
+#
+# 最后更新时间: 2023/4/1
+#
+# ================
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
 allow-lan: true
 bind-address: '*'
 mode: rule
@@ -14,38 +24,33 @@ dns:
   enhanced-mode: fake-ip  
   fake-ip-range: 198.18.0.1/16 
   fake-ip-filter:
-     - '*.lan'
-     - localhost.ptlogin2.qq.com
-     - '+.srv.nintendo.net'
-     - '+.stun.playstation.net'
-     - '+.msftconnecttest.com'
-     - '+.msftncsi.com'
-     - '+.xboxlive.com'
-     - 'msftconnecttest.com'
-     - 'xbox.*.microsoft.com'
-     - '*.battlenet.com.cn'
-     - '*.battlenet.com'
-     - '*.blzstatic.cn'
-     - '*.battle.net'
+    - '*.lan'
+    - localhost.ptlogin2.qq.com
+    - '+.srv.nintendo.net'
+    - '+.stun.playstation.net'
+    - '+.msftconnecttest.com'
+    - '+.msftncsi.com'
+    - '+.xboxlive.com'
+    - 'msftconnecttest.com'
+    - 'xbox.*.microsoft.com'
+    - '*.battlenet.com.cn'
+    - '*.battlenet.com'
+    - '*.blzstatic.cn'
+    - '*.battle.net'
   nameserver:
-     - 223.5.5.5
-     - 180.76.76.76
-     - 119.29.29.29
-     - 117.50.11.11
-     - 117.50.10.10
-     - 114.114.114.114
-     - https://dns.alidns.com/dns-query
-     - https://doh.360.cn/dns-query
+    - 223.5.5.5
+    - 119.29.29.29
+    - 114.114.114.114
   fallback:
-     - 8.8.8.8
-     - 1.1.1.1
-     - https://dns.rubyfish.cn/dns-query
-     - https://cloudflare-dns.com/dns-query
-     - https://dns.google/dns-query
+    - 8.8.8.8
+    - 1.1.1.1
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns.alidns.com/dns-query
   fallback-filter:
      geoip: true
+     geoip-code: CN
      ipcidr:
        - 240.0.0.0/4
-       
 
 
