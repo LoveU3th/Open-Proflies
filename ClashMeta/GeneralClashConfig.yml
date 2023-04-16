@@ -72,8 +72,10 @@ dns:
       - '+.facebook.com'
       - '+.youtube.com'
   nameserver:
-     - 223.5.5.5
-     - 119.29.29.29
+     - tls://dns.alidns.com
+     - https://doh.pub/dns-query
+     - https://doh.apad.pro/dns-query
+     - https://dns.alidns.com/dns-query
      - 114.114.114.114
   fallback:
      - https://cloudflare-dns.com/dns-query
