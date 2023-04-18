@@ -16,6 +16,11 @@ allow-lan: true
 bind-address: "*"
 ipv6: false
 mode: rule
+#自定义 geodata url
+geox-url:
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
 log-level: info
 external-controller: 0.0.0.0:9090
 profile:
@@ -44,6 +49,7 @@ sniffer:
 dns:
   enable: true
   ipv6: false
+  prefer-h3: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
@@ -72,16 +78,16 @@ dns:
       - '+.facebook.com'
       - '+.youtube.com'
   default-nameserver:
-     - 114.114.114.114
      - 119.29.29.29
+     - 114.114.114.114
   nameserver:
-     - 223.5.5.5
-     - 119.29.29.29
-     - 114.114.114.114
      - https://doh.pub/dns-query
+     - tls://223.5.5.5:853
+     - https://dns.alidns.com/dns-query
+     - quic://dns.adguard.com:784
   fallback:
-     - https://cloudflare-dns.com/dns-query
      - https://dns.google/dns-query
+     - https://cloudflare-dns.com/dns-query
   proxy-server-nameserver:
     - https://doh.apad.pro/dns-query
     - 119.29.29.29
