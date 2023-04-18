@@ -81,6 +81,7 @@ dns:
      - https://cloudflare-dns.com/dns-query
      - https://dns.google/dns-query
   proxy-server-nameserver:
+    - https://doh.apad.pro/dns-query
     - 223.5.5.5
 experimental:
   ignore-resolve-fail: true
