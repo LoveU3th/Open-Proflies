@@ -41,10 +41,11 @@ dns:
     - 114.114.114.114
     - 119.29.29.29
   nameserver:
-    - tls://dns.alidns.com
-    - https://doh.pub/dns-query
+    #- tls://dns.alidns.com
+    #- https://doh.pub/dns-query
+    #- https://doh.apad.pro/dns-query
+    #- https://dns.alidns.com/dns-query
     - https://doh.apad.pro/dns-query
-    - https://dns.alidns.com/dns-query
 
   fallback:
     - 8.8.8.8
