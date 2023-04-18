@@ -34,6 +34,7 @@ sniffer:
   - "+.nflxvideo.net"
   - "+.amazonaws.com"
   - "+.media.dssott.com"
+  - "+.google.com"
   - 'google.com'
   skip-domain:
   - "+.apple.com"
