@@ -172,7 +172,7 @@ proxy-groups:
   
  - {name: 🆎 AdBlock, type: select, proxies: [REJECT, DIRECT]}
   
- - {name: 🐟 漏网之鱼, <<: *use}
+ - {name: 🐟 漏网之鱼, <<: *pr}
  
  #节点地区分组
 
@@ -186,11 +186,10 @@ proxy-groups:
 
  - {name: 🇸🇬 狮城节点, <<: *auto, filter: "新|坡|SG|(?i)Singapore"}
   
- - {name: 🇬🇧 英国节点, <<: *auto, filter: "英|UK|(?i)Kingdom"}
+ - {name: 🇰🇷 韩国节点, <<: *auto, filter: "KR|Korea|KOR|首尔|韩|韓"}
   
- - {name: 🇦🇺 澳洲节点, <<: *auto, filter: "澳|AU|(?i)Austria"}
+ - {name: 🥳 其他地区, <<: *auto, filter: "^((?!香港|日本|美国|台湾|新加坡|狮城|韩国|HK|JP|US|TW|SG|KR).)*$"}
  
- - {name: 🇮🇳 印度节点, <<: *auto, filter: "印度|印|IN|India"}
   
 rule-providers:
 
