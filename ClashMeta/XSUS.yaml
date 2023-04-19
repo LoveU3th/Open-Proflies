@@ -107,7 +107,7 @@ experimental:
 ###建立锚点
     
 # 策略组引用相关
-pr: &pr {type: select, proxies: [🚀 自动切换, 🚀 手动切换, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇺🇲 美国节点, 🇨🇳 台湾节点, 🇸🇬 狮城节点, 🇬🇧 英国节点, 🇦🇺 澳洲节点, 🇮🇳 印度节点, DIRECT]}
+pr: &pr {type: select, proxies: [🚀 手动切换, 🚀 自动切换, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇺🇲 美国节点, 🇨🇳 台湾节点, 🇸🇬 狮城节点, 🇬🇧 英国节点, 🇦🇺 澳洲节点, 🇮🇳 印度节点, DIRECT]}
 
 # 订阅更新和延迟测试相关
 p: &p {type: http, interval: 86400, health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800}}
@@ -142,21 +142,27 @@ proxies: null
 
 proxy-groups:
 
+ #节点切换分组
+ 
+ - {name: 🚀 手动切换, <<: *use}
+
+ - {name: 🚀 自动切换, <<: *auto}
+
  #分流分组
 
- - {name: 🌏 国外网站, <<: *use}
+ - {name: 🌏 国外网站, <<: *pr}
 
- - {name: 🎬 国际媒体, <<: *use}
+ - {name: 🎬 国际媒体, <<: *pr}
 
- - {name: 🍎 苹果服务, <<: *use}
+ - {name: 🍎 苹果服务, <<: *pr}
 
- - {name: 🧩 微软服务, <<: *use}
+ - {name: 🧩 微软服务, <<: *pr}
 
- - {name: 🌌 谷歌服务, <<: *use}
+ - {name: 🌌 谷歌服务, <<: *pr}
 
- - {name: 📟 电报消息, <<: *use}
+ - {name: 📟 电报消息, <<: *pr}
 
- - {name: 🐦 推特服务, <<: *use}
+ - {name: 🐦 推特服务, <<: *pr}
 
  - {name: 🎮 游戏平台, type: select, proxies: [DIRECT, 🚀 手动切换]}
   
@@ -169,10 +175,6 @@ proxy-groups:
  - {name: 🐟 漏网之鱼, <<: *use}
  
  #节点地区分组
- 
- - {name: 🚀 手动切换, <<: *use}
-
- - {name: 🚀 自动切换, <<: *auto}
 
  - {name: 🇭🇰 香港节点, <<: *auto, filter: "港|HK|(?i)Hong"}
 
