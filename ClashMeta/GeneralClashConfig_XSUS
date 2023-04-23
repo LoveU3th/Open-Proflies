@@ -1,0 +1,97 @@
+# 基于[@JohnsonRan](https://github.com/JohnsonRan/CRules/blob/master/config/GeneralClashConfig.yml)修改
+# Author：https://github.com/Repcz
+#
+# 以 ';' 或 '#' 或 '//' 开头的配置文件行为注释行
+#
+# 最后更新时间: 2023/4/1
+#
+# ================
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+geodata-mode: true
+tcp-concurrent: true
+allow-lan: true
+bind-address: "*"
+ipv6: false
+mode: rule
+#自定义 geodata url
+geox-url:
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
+log-level: info
+external-controller: 0.0.0.0:9090
+profile:
+  store-selected: true
+  store-fake-ip: true
+sniffer:
+  enable: true
+  parse-pure-ip: true
+  force-domain:
+  - "+.netflix.com"
+  - "+.nflxvideo.net"
+  - "+.amazonaws.com"
+  - "+.media.dssott.com"
+  - "+.google.com"
+  - 'google.com'
+  skip-domain:
+  - "+.apple.com"
+  - Mijia Cloud
+  - "+.jd.com"
+  sniff:
+    TLS:
+    HTTP:
+      ports:
+      - 80
+      - 8080-8880
+      override-destination: true
+dns:
+  enable: true
+  ipv6: false
+  prefer-h3: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+     - '*.lan'
+     - localhost.ptlogin2.qq.com
+     - '+.srv.nintendo.net'
+     - '+.stun.playstation.net'
+     - '+.msftconnecttest.com'
+     - '+.msftncsi.com'
+     - '+.xboxlive.com'
+     - 'msftconnecttest.com'
+     - 'xbox.*.microsoft.com'
+     - '*.battlenet.com.cn'
+     - '*.battlenet.com'
+     - '*.blzstatic.cn'
+     - '*.battle.net'
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    geosite:
+      - '!CN'
+    ipcidr: 
+      - 240.0.0.0/4
+    domain: 
+      #- '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
+  default-nameserver:
+     - 119.29.29.29
+     - 114.114.114.114
+  nameserver:
+     - https://doh.pub/dns-query
+     - tls://223.5.5.5:853
+     - https://dns.alidns.com/dns-query
+     - quic://dns.adguard.com:784
+  fallback:
+     - https://dns.google/dns-query
+     - https://cloudflare-dns.com/dns-query
+  proxy-server-nameserver:
+    - https://doh.apad.pro/dns-query
+    - 119.29.29.29
+    - 223.5.5.5
+experimental:
+  ignore-resolve-fail: true
