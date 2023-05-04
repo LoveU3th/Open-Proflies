@@ -2,7 +2,7 @@
 # TG:https://t.me/RepczChannel
 # 以 ';' 或 '#' 或 '//' 开头的配置文件行为注释行
 #
-# 最后更新时间: 2023/4/26
+# 最后更新时间: 2023/5/3
 #
 # ================
 
@@ -85,7 +85,7 @@ proxy-providers:
     <<: *p
     url: "https://sub.xeton.dev/sub?target=clash&url=你的订阅链接&list=true&udp=true"
     # 可以使用任意类型的链接替换上面文字，多个链接使用英文符号的竖杠|隔开一起写上即可
-    # 也可以使用在线订阅转换，在进阶模式中勾选`输出为Node List`，将Clash订阅链接转换为只包含节点信息的配置，并替换掉整个引号""内的链接
+    # Sub-Store生成的链接，可以直接替换上述url引号中的部分，具体见Sub-Store教程
           
 proxies: null
 
@@ -103,9 +103,10 @@ proxy-groups:
 rule-providers:
   Ad: # 广告
     <<: *d
-    url: https://anti-ad.net/clash.yaml
-    path: ./ruleset/anti-ad-clash.yaml
-
+    url: https://anti-ad.net/surge.txt
+    format: text
+    path: ./ruleset/surge.txt
+    
   icloud: # 苹果
     <<: *d
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
@@ -152,6 +153,7 @@ rule-providers:
     path: ./ruleset/applications.yaml
     
 rules:
+  - SCRIPT,quic,REJECT
   - RULE-SET,applications,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
@@ -163,6 +165,11 @@ rules:
   - RULE-SET,proxy,🌏 国外网站
   - RULE-SET,direct,🌏 国内网站
   - RULE-SET,lancidr,DIRECT
-  - RULE-SET,cncidr,🌏 国内网站,no-resolve
-  - GEOIP,CN,🌏 国内网站,no-resolve
+  - RULE-SET,cncidr,🌏 国内网站
+  - GEOIP,CN,🌏 国内网站
   - MATCH,🌏 国外网站
+  
+script:
+  shortcuts:
+    quic: network == 'udp' and dst_port == 443  
+  
