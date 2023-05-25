@@ -1,8 +1,8 @@
 # Author:https://github.com/Repcz
-# TG:https://t.me/RepczChannel
+# TG:https://t.me/QVQ_Channel
 # 以 ';' 或 '#' 或 '//' 开头的配置文件行为注释行
 #
-# 最后更新时间: 2023/5/9
+# 最后更新时间: 2023/5/23
 #
 # ================
 
@@ -27,21 +27,72 @@ dns:
      - 223.5.5.5
      - 119.29.29.29
   fake-ip-range: 198.18.0.1/16    # Fake-IP解析地址池
-  fake-ip-filter:          # fake ip 白名单列表,以下地址不会下发fakeip映射用于连接
-     - '*.lan'
-     - localhost.ptlogin2.qq.com
-     - '+.srv.nintendo.net'
-     - '+.stun.playstation.net'
-     - '+.msftconnecttest.com'
-     - '+.msftncsi.com'
-     - '+.xboxlive.com'
-     - 'msftconnecttest.com'
-     - 'xbox.*.microsoft.com'
-     - '*.battlenet.com.cn'
-     - '*.battlenet.com'
-     - '*.blzstatic.cn'
-     - '*.battle.net'
-     - '*.mcdn.bilivideo.cn'
+  fake-ip-filter:          # fake ip 白名单列表'以下地址不会下发fakeip映射用于连接
+     - '*.lan' 
+     - 'cable.auth.com' 
+     - '*.msftconnecttest.com' 
+     - '*.msftncsi.com' 
+     - 'network-test.debian.org'
+     - 'detectportal.firefox.com' 
+     - 'resolver1.opendns.com' 
+     - '*.srv.nintendo.net' 
+     - '*.stun.playstation.net' 
+     - 'xbox.*.microsoft.com' 
+     - '*.xboxlive.com' 
+     - 'stun.*' 
+     - 'global.turn.twilio.com' 
+     - 'global.stun.twilio.com' 
+     - 'localhost.*.qq.com' 
+     - 'localhost.*.weixin.qq.com' 
+     - '*.logon.battlenet.com.cn' 
+     - '*.logon.battle.net' 
+     - '*.blzstatic.cn' 
+     - 'music.163.com' 
+     - '*.music.163.com' 
+     - '*.126.net' 
+     - 'musicapi.taihe.com' 
+     - 'music.taihe.com' 
+     - 'songsearch.kugou.com' 
+     - 'trackercdn.kugou.com' 
+     - '*.kuwo.cn' 
+     - 'api-jooxtt.sanook.com' 
+     - 'api.joox.com' 
+     - 'joox.com' 
+     - 'y.qq.com' 
+     - '*.y.qq.com' 
+     - 'streamoc.music.tc.qq.com' 
+     - 'mobileoc.music.tc.qq.com' 
+     - 'isure.stream.qqmusic.qq.com' 
+     - 'dl.stream.qqmusic.qq.com' 
+     - 'aqqmusic.tc.qq.com' 
+     - 'amobile.music.tc.qq.com' 
+     - '*.xiami.com' 
+     - '*.music.migu.cn' 
+     - 'music.migu.cn' 
+     - 'proxy.golang.org' 
+     - '*.mcdn.bilivideo.cn' 
+     - '*.cmpassport.com' 
+     - 'id6.me' 
+     - 'open.e.189.cn' 
+     - 'mdn.open.wo.cn' 
+     - 'opencloud.wostore.cn' 
+     - 'auth.wosms.cn' 
+     - '*.jegotrip.com.cn' 
+     - '*.icitymobile.mobi' 
+     - '*.pingan.com.cn' 
+     - '*.cmbchina.com' 
+     - 'pool.ntp.org' 
+     - '*.pool.ntp.org' 
+     - 'ntp.*.com' 
+     - 'time.*.com' 
+     - 'ntp?.*.com' 
+     - 'time?.*.com' 
+     - 'time.*.gov' 
+     - 'time.*.edu.cn' 
+     - '*.ntp.org.cn' 
+     - 'PDC._msDCS.*.*' 
+     - 'DC._msDCS.*.*' 
+     - 'GC._msDCS.*.*'
   nameserver:             # 默认DNS服务器，支持udp/tcp/dot/doh/doq
      - 223.5.5.5
      - 119.29.29.29
@@ -90,60 +141,57 @@ proxies:
 
 proxy-providers:
 # > 远程服务器
-  Subscribe:
-    <<: *p
-    url: http://your-service-provider
-
+ Subscribe: {<<: *p, url: http://your-service-provider}
 
 proxy-groups:
 
-# 分流分组
+ # 分流分组
 
-- {name: 国外网站, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png, <<: *pr}
+ - {name: 国外网站, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png, <<: *pr}
 
-- {name: 国际媒体, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png, <<: *pr}
+ - {name: 国际媒体, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png, <<: *pr}
 
-- {name: 苹果服务, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_1.png, <<: *pr}
+ - {name: 苹果服务, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_1.png, <<: *pr}
 
-- {name: 微软服务, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png, <<: *pr}
+ - {name: 微软服务, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png, <<: *pr}
 
-- {name: 谷歌服务, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png, <<: *pr}
+ - {name: 谷歌服务, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png, <<: *pr}
 
-- {name: 电报消息, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png, <<: *pr}
+ - {name: 电报消息, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png, <<: *pr}
 
-- {name: 推特消息, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png, <<: *pr}
+ - {name: 推特消息, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png, <<: *pr}
 
-- {name: 游戏平台, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png, <<: *pr}
+ - {name: 游戏平台, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png, <<: *pr}
 
-- {name: 哔哩哔哩, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png, type: select, proxies: [DIRECT, 香港节点, 台湾节点]}
+ - {name: 哔哩哔哩, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png, type: select, proxies: [DIRECT, 香港节点, 台湾节点]}
 
-- {name: OpenAI, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bot.png, <<: *pr}
+ - {name: OpenAI, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bot.png, type: select, proxies: [DIRECT, 🇺🇲 美国节点, 🚀 手动切换]}
 
-- {name: 广告拦截, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png, type: select, proxies: [REJECT, DIRECT]}
+ - {name: 广告拦截, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png, type: select, proxies: [REJECT, DIRECT]}
 
-- {name: 兜底分流, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png, <<: *pr}
+ - {name: 兜底分流, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png, <<: *pr}
 
-# 节点地区分流
+ # 节点地区分流
 
-- {name: 自动选择,  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png, <<: *auto}
+ - {name: 自动选择,  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png, <<: *auto}
 
-- {name: 手动切换,  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png, <<: *use}
+ - {name: 手动切换,  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png, <<: *use}
 
-- {name: 香港节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png, <<: *auto, filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
+ - {name: 香港节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png, <<: *auto, filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
 
-- {name: 日本节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png, <<: *auto, filter: "^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
+ - {name: 美国节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png, <<: *auto, filter: "^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
 
-- {name: 美国节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png, <<: *auto, filter: "^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
+ - {name: 狮城节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png, <<: *auto, filter: "^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
 
-- {name: 台湾节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png, <<: *auto, filter: "^(?=.*((?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
+ - {name: 日本节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png, <<: *auto, filter: "^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
 
-- {name: 狮城节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png, <<: *auto, filter: "^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
+ - {name: 台湾节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png, <<: *auto, filter: "^(?=.*((?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
   
-- {name: 英国节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png, <<: *auto, filter: "^(?=.*((?i)🇬🇧|英国|伦敦|(\b(UK|United Kingdom)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
+ - {name: 英国节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png, <<: *auto, filter: "^(?=.*((?i)🇬🇧|英国|伦敦|(\b(UK|United Kingdom)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
   
-- {name: 澳洲节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Australia.png, <<: *auto, filter: "^(?=.*((?i)🇦🇺|澳大利亚|(\b(AU|Australia)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
+ - {name: 澳洲节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Australia.png, <<: *auto, filter: "^(?=.*((?i)🇦🇺|澳大利亚|(\b(AU|Australia)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
  
-- {name: 印度节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/India.png, <<: *auto, filter: "^(?=.*((?i)🇮🇳|印度|班加罗尔|孟买|(\b(Mumbai|IN|India)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
+ - {name: 印度节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/India.png, <<: *auto, filter: "^(?=.*((?i)🇮🇳|印度|班加罗尔|孟买|(\b(Mumbai|IN|India)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
 
 
 rules:
@@ -151,6 +199,7 @@ rules:
   - GEOSITE,category-ads-all,广告拦截
   - GEOSITE,private,DIRECT
   - GEOIP,private,DIRECT
+  - GEOSITE,openai,OpenAI
   - GEOSITE,category-games,游戏平台
   - GEOSITE,youtube,国际媒体
   - GEOIP,netflix,国际媒体
@@ -158,7 +207,6 @@ rules:
   - GEOSITE,hbo,国际媒体
   - GEOSITE,disney,国际媒体
   - GEOSITE,primevideo,国际媒体
-  - GEOSITE,openai,OpenAI
   - GEOSITE,github,微软服务
   - GEOSITE,bilibili,哔哩哔哩
   - GEOSITE,telegram,电报消息
