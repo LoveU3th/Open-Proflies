@@ -29,7 +29,7 @@ dns:
      - 223.5.5.5
      - 119.29.29.29
   fake-ip-range: 198.18.0.1/16    # Fake-IP解析地址池
-  fake-ip-filter: ['*.lan', 'cable.auth.com', '*.msftconnecttest.com', '*.msftncsi.com', 'network-test.debian.org', 'detectportal.firefox.com', 'resolver1.opendns.com', '*.srv.nintendo.net', '*.stun.playstation.net', 'xbox.*.microsoft.com', '*.xboxlive.com', 'stun.*', 'global.turn.twilio.com', 'global.stun.twilio.com', 'localhost.*.qq.com', 'localhost.*.weixin.qq.com', '*.logon.battlenet.com.cn', '*.logon.battle.net', '*.blzstatic.cn', 'music.163.com', '*.music.163.com', '*.126.net', 'musicapi.taihe.com', 'music.taihe.com', 'songsearch.kugou.com', 'trackercdn.kugou.com', '*.kuwo.cn', 'api-jooxtt.sanook.com', 'api.joox.com', 'joox.com', 'y.qq.com', '*.y.qq.com', 'streamoc.music.tc.qq.com', 'mobileoc.music.tc.qq.com', 'isure.stream.qqmusic.qq.com', 'dl.stream.qqmusic.qq.com', 'aqqmusic.tc.qq.com', 'amobile.music.tc.qq.com', '*.xiami.com', '*.music.migu.cn', 'music.migu.cn', 'proxy.golang.org', '*.mcdn.bilivideo.cn', '*.cmpassport.com', 'id6.me', 'open.e.189.cn', 'mdn.open.wo.cn', 'opencloud.wostore.cn', 'auth.wosms.cn', '*.jegotrip.com.cn', '*.icitymobile.mobi', '*.pingan.com.cn', '*.cmbchina.com', 'pool.ntp.org', '*.pool.ntp.org', 'ntp.*.com', 'time.*.com', 'ntp?.*.com', 'time?.*.com', 'time.*.gov', 'time.*.edu.cn', '*.ntp.org.cn', 'PDC._msDCS.*.*', 'DC._msDCS.*.*', 'GC._msDCS.*.*']
+  fake-ip-filter: ['*.lan'， 'cable.auth.com'， '*.msftconnecttest.com'， '*.msftncsi.com'， 'network-test.debian.org'， 'detectportal.firefox.com'， 'resolver1.opendns.com'， '*.srv.nintendo.net'， '*.stun.playstation.net'， 'xbox.*.microsoft.com'， '*.xboxlive.com'， 'stun.*'， 'global.turn.twilio.com'， 'global.stun.twilio.com'， 'localhost.*.qq.com'， 'localhost.*.weixin.qq.com'， '*.logon.battlenet.com.cn'， '*.logon.battle.net'， '*.blzstatic.cn'， 'music.163.com'， '*.music.163.com'， '*.126.net'， 'musicapi.taihe.com'， 'music.taihe.com'， 'songsearch.kugou.com'， 'trackercdn.kugou.com'， '*.kuwo.cn'， 'api-jooxtt.sanook.com'， 'api.joox.com'， 'joox.com'， 'y.qq.com'， '*.y.qq.com'， 'streamoc.music.tc.qq.com'， 'mobileoc.music.tc.qq.com'， 'isure.stream.qqmusic.qq.com'， 'dl.stream.qqmusic.qq.com'， 'aqqmusic.tc.qq.com'， 'amobile.music.tc.qq.com'， '*.xiami.com'， '*.music.migu.cn'， 'music.migu.cn'， 'proxy.golang.org'， '*.mcdn.bilivideo.cn'， '*.cmpassport.com'， 'id6.me'， 'open.e.189.cn'， 'mdn.open.wo.cn'， 'opencloud.wostore.cn'， 'auth.wosms.cn'， '*.jegotrip.com.cn'， '*.icitymobile.mobi'， '*.pingan.com.cn'， '*.cmbchina.com'， 'pool.ntp.org'， '*.pool.ntp.org'， 'ntp.*.com'， 'time.*.com'， 'ntp?.*.com'， 'time?.*.com'， 'time.*.gov'， 'time.*.edu.cn'， '*.ntp.org.cn'， 'PDC._msDCS.*.*'， 'DC._msDCS.*.*'， 'GC._msDCS.*.*']
                           # fake ip 白名单列表'以下地址不会下发fakeip映射用于连接
   nameserver:             # 默认DNS服务器,支持udp/tcp/dot/doh/doq
      - 223.5.5.5
@@ -51,28 +51,28 @@ cfw-bypass: ['localhost', '*.local', 'captive.apple.com', 'e.crashlytics.com', '
 pr: &pr {type: select, proxies: [🚀 手动切换, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, ♻️ 自动选择, ⚠️ 故障转移, DIRECT]}
 
 # 订阅更新和延迟测试相关参数
-p: &p {type: http, interval: 86400, health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800}}
+p: &p {type: http， interval: 86400， health-check: {enable: true， url: http://www.gstatic.com/generate_204， interval: 1800}}
 
 # 自动选择策略组：选取延迟最低节点
-auto: &auto {type: url-test, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe]}
+auto: &auto {type: url-test， lazy: true， url: http://www.gstatic.com/generate_204， interval: 900， use: [Subscribe]}
 
 # 手动选择策略组：手动选择想要的节点/策略组
-select: &select {type: select, use: [Subscribe]}
+select: &select {type: select， use: [Subscribe]}
 
 # 故障回退策略组：策略组将按顺序选择你列表中第一个可用的节点
-fallback: &fallback {type: fallback, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe]}
+fallback: &fallback {type: fallback， lazy: true， url: http://www.gstatic.com/generate_204， interval: 900， use: [Subscribe]}
 
 # 负载均衡策略组：不同的请求将使用不同的代理节点
-load-balance: &load-balance {type: load-balance, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe]}
+load-balance: &load-balance {type: load-balance， lazy: true， url: http://www.gstatic.com/generate_204， interval: 900， use: [Subscribe]}
 
 # classical规则相关
-c: &c {type: http, behavior: classical, interval: 86400}
+c: &c {type: http， behavior: classical， interval: 86400}
 
 # domain规则相关
-d: &d {type: http, behavior: domain, interval: 86400}
+d: &d {type: http， behavior: domain， interval: 86400}
 
 # ipcidr规则相关
-i: &i {type: http, behavior: ipcidr, interval: 86400}
+i: &i {type: http， behavior: ipcidr， interval: 86400}
 
 ###结束
 
@@ -89,7 +89,7 @@ proxy-groups:
 
  - {name: 🚀 手动切换, type: select, use: [Subscribe], proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, DIRECT]}
 
- - {name: 🌏 国外网站, <<: *pr}
+ - {name: 🌏 国外网站， <<: *pr}
 
  - {name: 📹 国际媒体, <<: *pr}
 
