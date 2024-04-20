@@ -2,4 +2,7 @@
 
 # MyList && Other
 DOMAIN-SUFFIX,coze.com
+# cloudflare Tunnel
 DOMAIN-SUFFIX,argotunnel.com
+IP-CIDR,198.41.192.0/24,no-resolve
+IP-CIDR,198.41.200.0/24,no-resolve
