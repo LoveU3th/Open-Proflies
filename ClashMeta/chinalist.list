@@ -1,5 +1,5 @@
 # linux.do service
-DOMAIN-SUFFIX,linux.do
+# DOMAIN-SUFFIX,linux.do
 DOMAIN-SUFFIX,oaifree.com
 # PT
 DOMAIN-SUFFIX,hdkylin.work
