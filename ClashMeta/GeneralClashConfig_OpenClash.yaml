@@ -3,12 +3,12 @@
 # TG:https://t.me/RepczChannel
 # 以 ';' 或 '#' 或 '//' 开头的配置文件行为注释行
 #
-# 最后更新时间: 2023/4/26
+# 最后更新时间: 2024/12/9
 #
-# ================
+# =======================================================
 
 port: 7890           # HTTP 代理端口
-socks-port: 7891     # SOCKS5 代理端口
+#socks-port: 7891     # SOCKS5 代理端口
 #redir-port: 7892     # Linux 和 macOS 的 redir 代理端口
 mixed-port: 7893      # 混合端口 HTTP和SOCKS5用一个端口
 geodata-mode: true    #【Meta专属】使用geoip.dat数据库(默认：false使用mmdb数据库)
@@ -22,13 +22,20 @@ log-level: info       # 设置日志输出级别 (5 个级别：silent / error /
 external-controller: 127.0.0.1:9090   #外部控制器,可以使用 RESTful API 来控制你的 clash 内核
 
 geox-url:             #自定义 geodata url
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  geoip: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
+  # geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  # geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
   #mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
   
 profile:
   store-selected: true # 存储 select 选择记录
   store-fake-ip: true  # 持久化 fake-ip
+  cache:
+    enable: true
+    size: 10000
+    ttl: 60
   
 sniffer:               # 嗅探域名 可选配置
   enable: true
@@ -44,7 +51,7 @@ sniffer:               # 嗅探域名 可选配置
   - "+.nflxvideo.net"
   - "+.amazonaws.com"
   - "+.media.dssott.com"
-  #- 'google.com'
+  - 'google.com'
   sniffing:            # 需要嗅探协议
     - tls
     - http
@@ -61,15 +68,12 @@ tun:                   # Tun 配置
   auto-detect-interface: true   # 自动识别出口网卡
         
 dns:
-  enable: true             # 关闭将使用系统 DNS
-  ipv6: false              # IPV6解析开关；如果为false，将返回ipv6结果为空
-  enhanced-mode: fake-ip   # 模式：redir-host或fake-ip
-  listen: 0.0.0.0:53       # DNS监听地址
-  default-nameserver:      # 解析非IP的dns用的dns服务器,只支持纯IP
-    - 223.5.5.5
-    - 119.29.29.29
-  fake-ip-range: 198.18.0.1/16    # Fake-IP解析地址池
-  fake-ip-filter:          # fake ip 白名单列表,以下地址不会下发fakeip映射用于连接
+  enable: true
+  ipv6: false
+  prefer-h3: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
      - '*.lan'
      - localhost.ptlogin2.qq.com
      - '+.srv.nintendo.net'
@@ -83,25 +87,29 @@ dns:
      - '*.battlenet.com'
      - '*.blzstatic.cn'
      - '*.battle.net'
-     - '*.mcdn.bilivideo.cn'
-  nameserver:             # 默认DNS服务器，支持udp/tcp/dot/doh/doq
-     #- 223.5.5.5
-     #- 119.29.29.29
+
+  # 默认DNS服务器
+  default-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+  
+  # 主要DNS服务器
+  nameserver:
      - https://doh.pub/dns-query
+     - tls://223.5.5.5:853
      - https://dns.alidns.com/dns-query
-  fallback:               # 解析国外域名的DNS服务器
-     - https://cloudflare-dns.com/dns-query
-     - https://dns.google/dns-query
-     - https://doh.pub/dns-query
-     - https://dns.alidns.com/dns-query
-  fallback-filter:        # 配置 fallback 使用条件
-    geoip: true           # 配置是否使用 geoip
-    geoip-code: CN        # 当 nameserver 域名的 IP 查询 geoip 库为 CN 时，不使用 fallback 中的 DNS 查询结果
-    geosite:              # 配置强制 fallback，优先于 IP 判断，具体分类自行查看 geosite 库
-      - gfw
-    ipcidr:               # 在这个网段内的 IP 地址会被考虑为被污染的 IP
-      - 240.0.0.0/4
-    domain:               # 这些域名被视为已污染,匹配到这些域名,会直接使用fallback解析,不去使用nameserver
-      #- '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
+     - quic://dns.adguard.com:784
+  fallback: []
+  proxy-server-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+    - https://doh.apad.pro/dns-query
+  use-hosts: true  # 优先使用系统hosts
+
+tcp-concurrent: true  # 启用 TCP 并发连接
+find-process-mode: strict  # 进程匹配模式
+keep-alive-interval: 30  # TCP Keep-Alive 间隔
+inbound-tfo: true      # 启用 TCP Fast Open
+interface-name: eth0    # 出站网卡名称
+routing-mark: 6666     # 路由标记
+
