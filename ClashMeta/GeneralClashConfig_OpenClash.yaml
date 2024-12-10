@@ -106,8 +106,6 @@ dns:
     - https://doh.apad.pro/dns-query
   use-hosts: true  # 优先使用系统hosts
 
-tcp-concurrent: true  # 启用 TCP 并发连接
-find-process-mode: strict  # 进程匹配模式
 keep-alive-interval: 30  # TCP Keep-Alive 间隔
 inbound-tfo: true      # 启用 TCP Fast Open
 interface-name: eth0    # 出站网卡名称
